@@ -1,6 +1,6 @@
 package level3.strings;
 
-public class CodingBatSameEnds {
+public class CodingbatSameEnds {
     public static void main(String[] args) {
 
         System.out.println(sameEnds("asdfXasd"));
