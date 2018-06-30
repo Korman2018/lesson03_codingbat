@@ -1,13 +1,19 @@
 package level3.arrays;
 
+/**
+ * Given a non-empty array, return true if there is a place to split the array so
+ * that the sum of the numbers on one side is equal to the sum of the numbers on
+ * the other side.
+ */
 public class CodingbatCanBalance {
     public static void main(String[] args) {
         System.out.println(canBalance(new int[]{2, 1, 1, 2, 1}));
     }
 
-    private static boolean canBalance(int[] nums) {
+    public static boolean canBalance(int[] nums) {
         long sumRight = 0;
         long sumLeft = 0;
+
         for (int i = 1; i < nums.length; i++) {
             sumRight += nums[i];
         }

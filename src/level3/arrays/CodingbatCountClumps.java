@@ -1,34 +1,37 @@
 package level3.arrays;
 
+/**
+ * Say that a "clump" in an array is a series of 2 or more adjacent elements
+ * of the same value. Return the number of clumps in the given array.
+ */
 public class CodingbatCountClumps {
     public static void main(String[] args) {
 
-        System.out.println(countClumps(new int[]{1, 2, 2, 3, 4, 4}));
+        System.out.println(countClumps(new int[]{1, 2, 2, 3, 4, 4, 2}));
     }
 
-    private static int countClumps(int[] nums) {
-        int generalCount = 0;
-        for (int i = 0; i < nums.length; i++) {
-
-            int tempValue = nums[i];
-            int right = i + 1;
-            boolean isMatchesFound = false;
-
-            while (right < nums.length) {
-                if (nums[right] == tempValue) {
-                    isMatchesFound = true;
-                } else {
-                    break;
-                }
-                right++;
+    public static int countClumps(int[] nums) {
+        if (nums.length <= 1) {
+            return 0;
+        }
+        int numberOfClumps = 0;
+        boolean isMatchesFound = false;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                isMatchesFound = true;
+                continue;
             }
-
-            i = --right;
 
             if (isMatchesFound) {
-                generalCount++;
+                numberOfClumps++;
+                isMatchesFound = false;
             }
         }
-        return generalCount;
+
+        if (isMatchesFound) {
+            numberOfClumps++;
+        }
+
+        return numberOfClumps;
     }
 }

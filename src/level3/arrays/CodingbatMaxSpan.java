@@ -1,12 +1,18 @@
 package level3.arrays;
 
+/**
+ * Consider the leftmost and righmost appearances of some value in an array.
+ * We'll say that the "span" is the number of elements between the two inclusive.
+ * A single value has a span of 1. Returns the largest span found in the given array.
+ * (Efficiency is not a priority.)
+ */
 public class CodingbatMaxSpan {
     public static void main(String[] args) {
         System.out.println(maxSpan(new int[]{1, 4, 2, 1, 4, 4, 4}));
         System.out.println(maxSpan(new int[]{3, 9}));
     }
 
-    private static int maxSpan(int[] nums) {
+    public static int maxSpan(int[] nums) {
         if (nums.length == 0) {
             return 0;
         }
@@ -18,12 +24,12 @@ public class CodingbatMaxSpan {
                     int curSpan = j - i + 1;
                     if (curSpan > maxSpan) {
                         maxSpan = curSpan;
-                        if (maxSpan > nums.length - i) {
-                            return maxSpan;
-                        }
                     }
                     break;
                 }
+            }
+            if (maxSpan > nums.length - i) {
+                return maxSpan;
             }
         }
         return maxSpan;
