@@ -11,24 +11,24 @@ import java.util.Arrays;
  */
 public class CodingbatFix34 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(fix34(new int[]{3, 2, 3, 2, 4, 4})));
+        System.out.println(Arrays.toString(fix34(new int[]{1, 3, 1, 4, 4, 3, 1})));
     }
 
     public static int[] fix34(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 3) {
-                if (nums[i + 1] == 4) {
-                    i++;
-                    continue;
-                }
+        int nextIndexForFour = 0;
+        int numsLength = nums.length;
 
-                for (int j = 0; j < nums.length; j++) {
-                    if ((nums[j] == 4 && j == 0) || nums[j] == 4 && nums[j - 1] != 3) {
-                        i++;
-                        nums[j] = nums[i];
-                        nums[i] = 4;
-                        break;
-                    }
+        for (int i = 0; i < numsLength - 1; i++) {
+            if (nums[i] != 3) {
+                continue;
+            }
+            for (int j = nextIndexForFour; j < numsLength; j++) {
+                if (nums[j] == 4) {
+                    i++;
+                    nextIndexForFour = j + 1;
+                    nums[j] = nums[i];
+                    nums[i] = 4;
+                    break;
                 }
             }
         }
